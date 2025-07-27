@@ -18,7 +18,7 @@ pipeline {
     
     stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/deopura/dockerapp.git'
+                git branch: 'main', url: 'https://github.com/riddheshsutar/dockerapp.git'
           }
         }
 
@@ -48,7 +48,7 @@ pipeline {
 
     stage('Docker Login') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'nexusdocker', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                withCredentials([usernamePassword(credentialsId: 'nexustoken', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                     sh """
                         echo "$DOCKER_PASS" | docker login $REGISTRY_URL -u "$DOCKER_USER" --password-stdin
                     """
